@@ -1,0 +1,30 @@
+{
+  "name": "yandex-weather-touch",
+  "version": "0.1.0",
+  "homepage": "https://github.com/zyaba/yandex-weather-touch",
+  "authors": [
+    "zyaba <zyaba@jscoder.me>"
+  ],
+  "description": "Yandex Weather Webpage For Mobile Devices",
+  "main": "index.html",
+  "keywords": [
+    "yandex",
+    "weather",
+    "mobile",
+    "touch"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.2",
+    "normalize.css": "~3.0.2",
+    "lodash-amd": "~2.4.1"
+  }
+}
