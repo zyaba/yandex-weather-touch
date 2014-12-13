@@ -1,15 +1,16 @@
 define([
-    'backbone'
-], function( Backbone ) {
+    'backbone',
+    'hbs!templates/layout/layout'
+], function( Backbone, LayoutTemplate ) {
     return Backbone.View.extend({
-        el: 'body',
+        template: LayoutTemplate,
 
         initialize: function() {
             return this;
         },
 
         render: function() {
-            this.$el.html(5);
+            this.setElement( this.template() );
             return this;
         }
     });

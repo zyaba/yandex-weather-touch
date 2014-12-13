@@ -1,0 +1,31 @@
+.display_menu {
+  padding: 20px;
+  height: 64px;
+  list-style-type: none;
+
+  .display_menu__item {
+    border: 2px solid #ccc;
+    float: left;
+    width: 32.5%;
+    height: 100%;
+    font-size: 22px;
+    line-height: 62px;
+    text-align: center;
+    list-style-type: none;
+
+    &-active {
+      background-color: #ffebae;
+      border-color: #ccbe81;
+    }
+
+    &:first-child {
+      border-radius: 8px 0 0 8px;
+      border-right-style: none;
+    }
+
+    &:last-child {
+      border-radius: 0 8px 8px 0;
+      border-left-style: none;
+    }
+  }
+}

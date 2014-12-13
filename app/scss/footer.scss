@@ -1,0 +1,12 @@
+footer {
+  margin-top: 75px;
+
+  .footer__links_list {
+    list-style-type: none;
+    padding-left: 20px;
+
+    .footer__links_list__item {
+      margin-bottom: 5px;
+    }
+  }
+}

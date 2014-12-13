@@ -9,8 +9,8 @@ require.config({
         underscore: assetsPath + 'lodash/dist/lodash.underscore.min',
         backbone: assetsPath + 'backbone/backbone',
 
-        //handlebars: assetsPath + 'handlebars/handlebars.amd',
-        handlebars: assetsPath + 'require-handlebars-plugin/hbs/handlebars',
+        hbs: assetsPath + 'require-handlebars-plugin/hbs',
+        handlebars: assetsPath + 'require-handlebars-plugin/hbs/handlebars.runtime',
 
         moment: assetsPath + 'momentjs/min/moment.min'
     },
@@ -27,6 +27,6 @@ require([ 'backbone' ], function() {} );
 require([ 'jquery', 'views/app.view' ], function( $, AppView ) {
     $(function() {
         var app  = new AppView();
-        app.render();
+        $('body' ).html( app.render().el );
     });
 });
