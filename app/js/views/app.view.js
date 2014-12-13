@@ -1,7 +1,8 @@
 define([
     'backbone',
-    'hbs!templates/layout/layout'
-], function( Backbone, LayoutTemplate ) {
+    'hbs!templates/layout/layout',
+    'views/forecast.view'
+], function( Backbone, LayoutTemplate, ForecastView ) {
     return Backbone.View.extend({
         template: LayoutTemplate,
 
@@ -11,6 +12,8 @@ define([
 
         render: function() {
             this.setElement( this.template() );
+            this.$el.append( ( new ForecastView() ).render().el );
+
             return this;
         }
     });
