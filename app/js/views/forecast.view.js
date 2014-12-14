@@ -5,7 +5,7 @@ define([
     'moment'
 ], function( urlsConfig, coloursConfig, DayForecastTemplate, moment ) {
     return Backbone.View.extend({
-        className: 'forecast',
+        el: '.forecast',
 
         dayForecastTemplate: DayForecastTemplate,
 
@@ -55,24 +55,21 @@ define([
                 }
                 this.data.push( dayObj );
             }.bind( this ));
-            console.log('finish');
         },
 
         _parseDayParts: function( dayForecast, part ) {
-            var temp;
-
-            if ( part.temp_min === undefined || part.temp_max === undefined ) {
-                temp = part.temp - 1 + '   ' + (part.temp + 1);
-            } else {
-                temp = part.temp_min + '&nbsp;&nbsp;&nbsp;' + part.temp_max;
-            }
-
             dayForecast.parts.push({
                 weatherIcon: part.weather_icon,
                 timeOfDay: this._getPartLocale( part.type ),
                 colour: coloursConfig[ part.temp ],
                 tempMin: part.temp_min || part.temp - 1,
-                tempMax: part.temp_max || part.temp + 1
+                tempMax: part.temp_max || part.temp + 1,
+                weather: _.capitalize( part.weather ),
+                wind_direction: part.wind_direction,
+                wind: part.wind,
+                wind_speed: part.wind_speed,
+                humidity: part.humidity,
+                pressure: part.pressure
             })
         },
 
@@ -83,7 +80,7 @@ define([
                 case 1:
                     return date.format('Завтра, D MMMM');
                 default:
-                    return date.format('D MMM, dddd');
+                    return date.format('D MMMM, dddd');
             }
         },
 

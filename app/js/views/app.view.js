@@ -1,8 +1,9 @@
 define([
     'backbone',
     'hbs!templates/layout/layout',
-    'views/forecast.view'
-], function( Backbone, LayoutTemplate, ForecastView ) {
+    'views/forecast.view',
+    'views/tabs.view'
+], function( Backbone, LayoutTemplate, ForecastView, TabsView ) {
     return Backbone.View.extend({
         template: LayoutTemplate,
 
@@ -12,15 +13,20 @@ define([
 
         render: function() {
             this.setElement( this.template() );
+            $('body' ).html( this.el );
 
+            this._initTabs();
             this._renderForecastView();
 
             return this;
         },
 
+        _initTabs: function() {
+            this.$tabsView = new TabsView();
+        },
+
         _renderForecastView: function() {
-            this.$forecastView = new ForecastView();
-            this.$el.find('.forecast').replaceWith( this.$forecastView.render().el );
+            this.$forecastView = new ForecastView().render();
         }
     });
 });

@@ -23,10 +23,12 @@ require.config({
     }
 });
 
-require([ 'backbone' ], function() {} );
+require([ 'backbone', 'common/lodash.mixins' ], function() {} );
+require([ 'moment', 'locales/moment.locale'], function( moment, momentLocales) {
+    moment.locale( 'ru', momentLocales );
+});
 require([ 'jquery', 'views/app.view' ], function( $, AppView ) {
     $(function() {
-        var app  = new AppView();
-        $('body' ).html( app.render().el );
+        var app  = new AppView().render();
     });
 });

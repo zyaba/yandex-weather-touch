@@ -1,5 +1,4 @@
 <div class="day_forecast_wrapper">
-    <!--<span class="day_forecast__header">{{date}}</span>-->
     <h3 class="day_forecast__header">{{date}}</h3>
     {{#each parts}}
         <div class="day_forecast__row" style="background-color: {{colour}};">
@@ -7,6 +6,12 @@
             <div class="day_forecast__row_item">
                 <img class="row_item__weather_icon left" src="http://ekb.shri14.ru/icons/{{weatherIcon}}.svg"/>
                 <span class="row_item__temp">{{tempMin}}&nbsp;&nbsp;&nbsp;{{tempMax}}</span>
+                <ul class="row_item__details">
+                    <li class="details__item_head">{{weather}}</li>
+                    <li class="details__item">Ветер: <span class="wind_icon wind_icon_{{wind_direction}}"></span> {{wind}}, {{wind_speed}}м/с</li>
+                    <li class="details__item">Влажность: {{humidity}}%</li>
+                    <li class="details__item">Давление: {{pressure}} мм рт.ст.</li>
+                </ul>
             </div>
         </div>
     {{/each}}
