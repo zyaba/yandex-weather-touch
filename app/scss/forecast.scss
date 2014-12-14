@@ -1,7 +1,22 @@
 .forecast {
+  @import "wind.icon";
 
-  &.forecast-short .day_forecast__row {
+  &.forecast-short {
+    .day_forecast__row {
       max-height: 80px;
+    }
+    .weather_item-details {
+      visibility: hidden;
+    }
+    .forecast__forecast_today {
+      max-height: 230px;
+    }
+    .forecast_today__last_update {
+      display: none;
+    }
+    .forecast_today__weather_list-short {
+      display: block;
+    }
   }
 
   &.forecast-details .day_forecast_wrapper {
@@ -11,17 +26,35 @@
     .day_forecast__row_label {
       color: #000;
     }
+    .weather_item-details {
+      display: block;
+    }
+    .forecast__forecast_today {
+      max-height: 270px;
+    }
+    .forecast_today__last_update {
+      display: block;
+    }
+    .forecast_today__weather_list {
+      display: none;
+    }
+    .forecast_today__weather_list-short {
+      display: none;
+    }
+    .forecast_today__weather_list-details {
+      display: block;
+    }
   }
+
 
   .day_forecast_wrapper {
     margin-top: 20px;
 
     .day_forecast__header {
-      margin-left: 20px;
+      margin: 40px 0 10px 20px;
     }
 
     .day_forecast__row {
-      height: auto;
       padding: 25px 20px;
       box-sizing: border-box;
       transition: max-height $transitionSpeed;
@@ -64,80 +97,54 @@
           }
         }
       }
-
-      .wind_icon {
-        background: url(http://yastatic.net/weather-frontend/_/N3n-oDD3MaaMLxl5pQnzNDkEryw.svg) no-repeat;
-        display: inline-block;
-        top: 2px;
-        opacity: .6;
-        width: 20px;
-        height: 20px;
-
-
-        &.wind_icon_s {
-          transform: rotate(0deg)
-        }
-
-        &.wind_icon_ssw {
-          transform: rotate(30deg)
-        }
-
-        &.wind_icon_sw {
-          transform: rotate(45deg)
-        }
-
-        &.wind_icon_wsw {
-          transform: rotate(60deg)
-        }
-
-        &.wind_icon_w {
-          transform: rotate(90deg)
-        }
-
-        &.wind_icon_wnw {
-          transform: rotate(120deg)
-        }
-
-        &.wind_icon_nw {
-          transform: rotate(135deg)
-        }
-
-        &.wind_icon_nnw {
-          transform: rotate(150deg)
-        }
-
-        &.wind_icon_n {
-          transform: rotate(180deg)
-        }
-
-        &.wind_icon_nne {
-          transform: rotate(-150deg)
-        }
-
-        &.wind_icon_ne {
-          transform: rotate(-135deg)
-        }
-
-        &.wind_icon_ene {
-          transform: rotate(-120deg)
-        }
-
-        &.wind_icon_e {
-          transform: rotate(-90deg)
-        }
-
-        &.wind_icon_ese {
-          transform: rotate(-60deg)
-        }
-
-        &.wind_icon_se {
-          transform: rotate(-45deg)
-        }
-
-        &.wind_icon_sse {
-          transform: rotate(-30deg)
-        }
-      }
     }
   }
+
+  .forecast__forecast_today {
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: max-height $transitionSpeed;
+
+    .forecast_today_row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .forecast_today__temp {
+      display: block;
+      font-size: 80px;
+    }
+
+    .forecast_today__last_update {
+      margin: 10px 0 0 40px;
+      color: $gray;
+    }
+
+    .forecast_today__weather_list {
+      list-style-type: none;
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-size: 20px;
+      color: $gray;
+      max-width: 60%;
+      
+      .weather_list__weather_item {
+        margin-bottom: 3px;
+      }
+
+      .weather_list__weather_item_desc {
+        color: #000;
+        margin-bottom: 5px;
+        margin-top: 20px;
+      }
+    }
+
+    .row_item__weather_icon {
+      width: 100px;
+    }
+  }
+
+
 }

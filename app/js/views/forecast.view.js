@@ -1,13 +1,17 @@
 define([
     'configs/urls.config',
     'configs/colours.config',
-    'hbs!templates/forecast-day',
+    'locales/parts.locale',
+    'hbs!templates/forecast.item',
+    'hbs!templates/forecast.today',
     'moment'
-], function( urlsConfig, coloursConfig, DayForecastTemplate, moment ) {
+], function( urlsConfig, coloursConfig, partsLocale, ForecastItemTemplate, ForecastTodayTemplate, moment ) {
     return Backbone.View.extend({
         el: '.forecast',
 
-        dayForecastTemplate: DayForecastTemplate,
+        templateForecastItem: ForecastItemTemplate,
+
+        templateForecastToday: ForecastTodayTemplate,
 
         initialize: function() {
             _.bindAll( this, '_parseDayParts', '_onForecastGetSuccess', '_renderData' );
@@ -22,9 +26,19 @@ define([
         },
 
         _renderData: function() {
+            this._renderOverall();
+            this._renderToday();
+        },
+
+        _renderOverall: function() {
             _.each( this.data, function( day ) {
-                this.$el.append( this.dayForecastTemplate( day ) );
+                this.$el.append( this.templateForecastItem( day ) );
             }.bind( this ));
+        },
+
+        _renderToday: function() {
+            var forecastToday = this.templateForecastToday(this.dataFact );
+            this.$el.find('.day_forecast_wrapper:first .day_forecast__header' ).after( forecastToday );
         },
 
         _getForecastData: function() {
@@ -39,6 +53,7 @@ define([
             var date;
 
             this.data = [];
+            this.dataFact = data.fact;
 
             _.each( data.forecast, function( dayForecast, index ) {
                 if ( index > 3 ) {
@@ -53,6 +68,7 @@ define([
                 for ( i=0; i < 4; i++ ) {
                     this._parseDayParts( dayObj, dayForecast.parts[i] )
                 }
+
                 this.data.push( dayObj );
             }.bind( this ));
         },
@@ -60,13 +76,13 @@ define([
         _parseDayParts: function( dayForecast, part ) {
             dayForecast.parts.push({
                 weatherIcon: part.weather_icon,
-                timeOfDay: this._getPartLocale( part.type ),
-                colour: coloursConfig[ part.temp ],
+                timeOfDay: partsLocale[ part.type ],
                 tempMin: part.temp_min || part.temp - 1,
                 tempMax: part.temp_max || part.temp + 1,
                 weather: _.capitalize( part.weather ),
                 wind_direction: part.wind_direction,
                 wind: part.wind,
+                temp: part.temp,
                 wind_speed: part.wind_speed,
                 humidity: part.humidity,
                 pressure: part.pressure
@@ -82,17 +98,6 @@ define([
                 default:
                     return date.format('D MMMM, dddd');
             }
-        },
-
-        _getPartLocale: function( part ) {
-            var parts = {
-                morning: 'Утром',
-                day: 'Днем',
-                evening: 'Вечером',
-                night: 'Ночью'
-            };
-
-            return parts[ part ];
         }
     });
 });

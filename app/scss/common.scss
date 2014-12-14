@@ -1,5 +1,6 @@
 body {
   font-size: $fontSize;
+  overflow-y: scroll;
 }
 
 a {
@@ -13,4 +14,8 @@ a {
 
 .right {
   float: right;
+}
+
+.hidden {
+  display: none;
 }

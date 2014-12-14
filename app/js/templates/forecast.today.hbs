@@ -1,0 +1,20 @@
+<div class="forecast__forecast_today" style="background-color: {{getBackgroundColor temp}}">
+    <div class="forecast_today_row">
+        <span class="forecast_today__temp left">{{temp}}&deg;C</span>
+        <ul class="forecast_today__weather_list forecast_today__weather_list-short left">
+            <li class="weather_list__item">Ветер: {{wind_speed}}&nbsp;м/с</li>
+            <li class="weather_list__item">Влажность: {{humidity}}%</li>
+            <li class="weather_list__item">Давление: {{pressure}}&nbsp;мм рт.ст.</li>
+        </ul>
+        <span class="forecast_today__last_update left">2 часа назад</span>
+    </div>
+    <div class="forecast_today_row">
+        <img class="row_item__weather_icon left" src="http://ekb.shri14.ru/icons/{{weather_icon}}.svg"/>
+        <ul class="forecast_today__weather_list forecast_today__weather_list-details left">
+            <li class="weather_list__weather_item weather_list__weather_item_desc">{{weather}}</li>
+            <li class="weather_list__weather_item weather_item-details">Ветер: <span class="wind_icon wind_icon_{{wind_direction}}"></span>&nbsp;{{wind}}, {{wind_speed}}&nbsp;м/с</li>
+            <li class="weather_list__weather_item weather_item-details">Влажность: {{humidity}}%</li>
+            <li class="weather_list__weather_item weather_item-details">Давление: {{pressure}}&nbsp;мм рт.ст.</li>
+        </ul>
+    </div>
+</div>

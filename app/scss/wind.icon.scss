@@ -1,0 +1,73 @@
+.wind_icon {
+  background: url(http://yastatic.net/weather-frontend/_/N3n-oDD3MaaMLxl5pQnzNDkEryw.svg) no-repeat;
+  display: inline-block;
+  top: 2px;
+  opacity: .6;
+  width: 20px;
+  height: 20px;
+
+
+  &.wind_icon_s {
+    transform: rotate(0deg)
+  }
+
+  &.wind_icon_ssw {
+    transform: rotate(30deg)
+  }
+
+  &.wind_icon_sw {
+    transform: rotate(45deg)
+  }
+
+  &.wind_icon_wsw {
+    transform: rotate(60deg)
+  }
+
+  &.wind_icon_w {
+    transform: rotate(90deg)
+  }
+
+  &.wind_icon_wnw {
+    transform: rotate(120deg)
+  }
+
+  &.wind_icon_nw {
+    transform: rotate(135deg)
+  }
+
+  &.wind_icon_nnw {
+    transform: rotate(150deg)
+  }
+
+  &.wind_icon_n {
+    transform: rotate(180deg)
+  }
+
+  &.wind_icon_nne {
+    transform: rotate(-150deg)
+  }
+
+  &.wind_icon_ne {
+    transform: rotate(-135deg)
+  }
+
+  &.wind_icon_ene {
+    transform: rotate(-120deg)
+  }
+
+  &.wind_icon_e {
+    transform: rotate(-90deg)
+  }
+
+  &.wind_icon_ese {
+    transform: rotate(-60deg)
+  }
+
+  &.wind_icon_se {
+    transform: rotate(-45deg)
+  }
+
+  &.wind_icon_sse {
+    transform: rotate(-30deg)
+  }
+}

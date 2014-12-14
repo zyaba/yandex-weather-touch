@@ -20,10 +20,14 @@ require.config({
             deps: [ 'underscore', 'jquery' ],
             exports: 'Backbone'
         }
+    },
+
+    hbs: {
+        helpers: false
     }
 });
 
-require([ 'backbone', 'common/lodash.mixins' ], function() {} );
+require([ 'backbone', 'common/lodash.mixins', 'common/handlebars.helpers' ], function() {} );
 require([ 'moment', 'locales/moment.locale'], function( moment, momentLocales) {
     moment.locale( 'ru', momentLocales );
 });
