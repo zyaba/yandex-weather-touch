@@ -12,9 +12,15 @@ define([
 
         render: function() {
             this.setElement( this.template() );
-            this.$el.append( ( new ForecastView() ).render().el );
+
+            this._renderForecastView();
 
             return this;
+        },
+
+        _renderForecastView: function() {
+            this.$forecastView = new ForecastView();
+            this.$el.find('.forecast').replaceWith( this.$forecastView.render().el );
         }
     });
 });

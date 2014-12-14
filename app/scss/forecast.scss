@@ -1,3 +1,38 @@
 .forecast {
-  padding: 0 20px;
+
+  .day_forecast_wrapper {
+    margin-top: 20px;
+
+    .day_forecast__header {
+      margin-left: 20px;
+    }
+
+    .day_forecast__row {
+      height: 80px;
+      padding: 25px 20px;
+      box-sizing: border-box;
+
+      &_label {
+        color: #7b7a6b;
+//        padding-top: 26px;
+        width: 120px;
+        height: 100%;
+        box-sizing: border-box;
+      }
+
+      &_item {
+        text-align: left;
+        height: 100%;
+        box-sizing: border-box;
+
+        .row_item__weather_icon {
+          margin-top: -10px;
+        }
+
+        .row_item__temp {
+          margin-left: 30px;
+        }
+      }
+    }
+  }
 }

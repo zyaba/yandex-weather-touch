@@ -1,4 +1,16 @@
+body {
+  font-size: $fontSize;
+}
+
 a {
   color: $blue;
   text-decoration: none;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
