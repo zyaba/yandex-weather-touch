@@ -8,11 +8,18 @@ define([
             'click li': 'onOptionChoose'
         },
 
+        optionsMap: {
+            short: 'short',
+            details: 'details',
+            visual: 'visual'
+        },
+
         initialize: function() {
             _.bindAll( this, 'onOptionChoose' );
 
+            this.$visualColumns = null;
             this.$forecast = $('.forecast');
-            this.$listItems = this.$el.find('li');
+            this.$options = this.$el.find('li');
 
             return this;
         },
@@ -29,10 +36,29 @@ define([
                 .removeClass('forecast-short forecast-details forecast-visual' )
                 .addClass( 'forecast-' + name );
 
-            this.$listItems
+            this.$options
                 .removeClass('display_menu__item-active');
 
             $el.addClass('display_menu__item-active');
+
+            if ( name === this.optionsMap.visual ) {
+                this._onVisualSectionClick();
+            }
+        },
+
+        _onVisualSectionClick: _.once( function() {
+            this.$visualColumns = $('.visual_item__column');
+            this.$visualColumns.each( this._setProperHeight )
+        }),
+
+        /**
+         * Animate our columns by setting the right 'max-height' value
+         * @param e
+         * @private
+         */
+        _setProperHeight: function( e ){
+            var $el = $(this);
+            $el.css('max-height', $el.data('max-height') );
         }
     });
 });

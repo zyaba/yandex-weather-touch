@@ -1,0 +1,11 @@
+<div class="forecast_visual">
+    {{#each this}}
+        <div class="forecast_visual__visual_item">
+            <div class="visual_item__column{{#if tempClass}} visual_item__column-{{tempClass}}{{/if}}" data-max-height="{{height}}" style="background-color: {{getBackgroundColor temp}}">
+                <span class="visual_item__temp">{{formatTemp temp}}</span>
+                <img class="visual_item__weather_icon" src="http://ekb.shri14.ru/icons/{{weatherIcon}}.svg"/>
+                <span class="visual_item__day{{#if isWeekend}} visual_item__day-weekend{{/if}}">{{weekDay}}</span>
+            </div>
+        </div>
+    {{/each}}
+</div>

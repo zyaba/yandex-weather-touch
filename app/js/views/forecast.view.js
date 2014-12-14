@@ -1,17 +1,30 @@
 define([
+    'moment',
     'configs/urls.config',
+    'configs/main.config',
     'configs/colours.config',
     'locales/parts.locale',
     'hbs!templates/forecast.item',
     'hbs!templates/forecast.today',
-    'moment'
-], function( urlsConfig, coloursConfig, partsLocale, ForecastItemTemplate, ForecastTodayTemplate, moment ) {
+    'hbs!templates/forecast.visual'
+], function(
+    moment,
+    urlsConfig,
+    mainConfig,
+    coloursConfig,
+    partsLocale,
+    ForecastItemTemplate,
+    ForecastTodayTemplate,
+    ForecastVisualTemplate
+) {
     return Backbone.View.extend({
         el: '.forecast',
 
         templateForecastItem: ForecastItemTemplate,
 
         templateForecastToday: ForecastTodayTemplate,
+
+        templateForecastVisual: ForecastVisualTemplate,
 
         initialize: function() {
             _.bindAll( this, '_parseDayParts', '_onForecastGetSuccess', '_renderData' );
@@ -28,6 +41,7 @@ define([
         _renderData: function() {
             this._renderOverall();
             this._renderToday();
+            this._renderVisual();
         },
 
         _renderOverall: function() {
@@ -37,7 +51,7 @@ define([
         },
 
         _renderToday: function() {
-            var forecastToday = this.templateForecastToday( this.dataFact );
+            var forecastToday = this.templateForecastToday( this.initialData.fact );
             this.$el.find('.day_forecast_wrapper:first .day_forecast__header' ).after( forecastToday );
         },
 
@@ -53,7 +67,7 @@ define([
             var date;
 
             this.data = [];
-            this.dataFact = data.fact;
+            this.initialData = data;
 
             _.each( data.forecast, function( dayForecast, index ) {
                 if ( index > 3 ) {
@@ -87,6 +101,62 @@ define([
                 humidity: part.humidity,
                 pressure: part.pressure
             })
+        },
+
+        _parseVisualData: function() {
+            var range = mainConfig.VISUAL_GRAPH_MAX_HEIGHT - mainConfig.VISUAL_GRAPH_MIN_HEIGHT,
+                maxTemp = 0,
+                minTemp = 0,
+                result = [],
+                diff,
+                step,
+                date,
+                dayTemp,
+                position;
+
+            // Find min and max values and add required data to the object
+            _.each( this.initialData.forecast, function( dayData ) {
+                date = moment( dayData.date );
+                dayTemp = dayData.parts[ 1 ].temp;
+
+                if ( dayTemp > maxTemp ) {
+                    maxTemp = dayTemp;
+                }
+
+                if ( dayTemp < minTemp ) {
+                    minTemp = dayTemp;
+                }
+
+                result.push({
+                    temp: dayTemp,
+                    weekDay: moment( dayData.date ).format('dd'),
+                    weatherIcon: dayData.parts[ 1 ].weather_icon,
+                    isWeekend: date.get('day') === 6 || date.get('day') === 0
+                });
+            });
+
+            // Calculate how many pixels are in one step
+            diff = maxTemp - minTemp;
+            step = range / diff;
+
+            // Calculate the proper height
+            _.each( result, function( obj ) {
+                position = maxTemp - obj.temp;
+                obj.height = mainConfig.VISUAL_GRAPH_MAX_HEIGHT - position * step;
+
+                if ( obj.temp > 0 ) {
+                    obj.tempClass = 'positive';
+                } else if ( obj.temp < 0 ) {
+                    obj.tempClass = 'negative';
+                }
+            });
+
+            return result;
+        },
+
+        _renderVisual: function() {
+            var data = this._parseVisualData();
+            this.$el.append( this.templateForecastVisual( data ) );
         },
 
         _formatDateString: function( date, index ) {

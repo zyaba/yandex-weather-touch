@@ -46,6 +46,12 @@
     }
   }
 
+  &.forecast-visual {
+    .day_forecast_wrapper {
+      display: none;
+    }
+  }
+
 
   .day_forecast_wrapper {
     margin-top: 20px;
@@ -144,6 +150,65 @@
 
     .row_item__weather_icon {
       width: 100px;
+    }
+  }
+
+  .forecast_visual {
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .forecast_visual__visual_item {
+      display: inline-block;
+      width: 10%;
+      float: left;
+      height: 450px;
+      text-align: center;
+      position: relative;
+
+      .visual_item__column {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        border-top: 10px solid #ccc;
+        transition: max-height $transitionSpeed;
+        height: 100%;
+        max-height: 100px;
+
+        &-negative {
+          border-color: #8CABCF;
+        }
+
+        &-positive {
+          border-color: #d79200;
+        }
+
+        .visual_item__temp {
+          display: block;
+          margin-top: -45px;
+        }
+
+        .visual_item__day {
+          position: absolute;
+          bottom: 10px;
+          left: 0;
+          right: 0;
+
+          &-weekend {
+            color: red;
+          }
+        }
+
+        .visual_item__weather_icon {
+          position: absolute;
+          bottom: 40px;
+          width: 50%;
+          margin-left: 25%;
+          left: 0;
+        }
+      }
     }
   }
 
