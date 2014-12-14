@@ -37,7 +37,7 @@ define([
         },
 
         _renderToday: function() {
-            var forecastToday = this.templateForecastToday(this.dataFact );
+            var forecastToday = this.templateForecastToday( this.dataFact );
             this.$el.find('.day_forecast_wrapper:first .day_forecast__header' ).after( forecastToday );
         },
 
@@ -79,7 +79,7 @@ define([
                 timeOfDay: partsLocale[ part.type ],
                 tempMin: part.temp_min || part.temp - 1,
                 tempMax: part.temp_max || part.temp + 1,
-                weather: _.capitalize( part.weather ),
+                weather: part.weather,
                 wind_direction: part.wind_direction,
                 wind: part.wind,
                 temp: part.temp,
