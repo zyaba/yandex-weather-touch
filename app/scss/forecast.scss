@@ -17,38 +17,58 @@
     .forecast_today__weather_list-short {
       display: block;
     }
+    .forecast_visual {
+      display: none;
+    }
   }
 
-  &.forecast-details .day_forecast_wrapper {
-    .day_forecast__row {
-      max-height: 215px;
-    }
-    .day_forecast__row_label {
-      color: #000;
-    }
-    .weather_item-details {
-      display: block;
-    }
-    .forecast__forecast_today {
-      max-height: 270px;
-    }
-    .forecast_today__last_update {
-      display: block;
-    }
-    .forecast_today__weather_list {
+  &.forecast-details {
+    .forecast_visual {
       display: none;
     }
-    .forecast_today__weather_list-short {
-      display: none;
-    }
-    .forecast_today__weather_list-details {
-      display: block;
+
+    .day_forecast_wrapper {
+      .day_forecast__row {
+        max-height: 215px;
+      }
+      .day_forecast__row_label {
+        color: #000;
+      }
+      .weather_item-details {
+        display: block;
+      }
+      .forecast__forecast_today {
+        max-height: 270px;
+      }
+      .forecast_today__last_update {
+        display: block;
+      }
+      .forecast_today__weather_list {
+        display: none;
+      }
+      .forecast_today__weather_list-short {
+        display: none;
+      }
+      .forecast_today__weather_list-details {
+        display: block;
+      }
     }
   }
 
   &.forecast-visual {
-    .day_forecast_wrapper {
+    .day_forecast__header,
+    .day_forecast__row {
       display: none;
+    }
+    .forecast__forecast_today {
+      background-color: transparent !important;
+
+      .forecast_today__weather_list-short {
+        display: none;
+      }
+      .weather_item-details {
+        display: none;
+      }
     }
   }
 
@@ -164,7 +184,7 @@
       display: inline-block;
       width: 10%;
       float: left;
-      height: 450px;
+      height: 475px;
       text-align: center;
       position: relative;
 

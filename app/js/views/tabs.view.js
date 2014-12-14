@@ -15,7 +15,7 @@ define([
         },
 
         initialize: function() {
-            _.bindAll( this, 'onOptionChoose' );
+            _.bindAll( this, 'onOptionChoose', '_onVisualSectionClick' );
 
             this.$visualColumns = null;
             this.$forecast = $('.forecast');
@@ -42,11 +42,11 @@ define([
             $el.addClass('display_menu__item-active');
 
             if ( name === this.optionsMap.visual ) {
-                this._onVisualSectionClick();
+                _.defer( this._onVisualSectionClick );
             }
         },
 
-        _onVisualSectionClick: _.once( function() {
+        _onVisualSectionClick: _.once(function() {
             this.$visualColumns = $('.visual_item__column');
             this.$visualColumns.each( this._setProperHeight )
         }),

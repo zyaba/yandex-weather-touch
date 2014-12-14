@@ -1,17 +1,13 @@
 define([
     'moment',
-    'configs/urls.config',
     'configs/main.config',
-    'configs/colours.config',
     'locales/parts.locale',
     'hbs!templates/forecast.item',
     'hbs!templates/forecast.today',
     'hbs!templates/forecast.visual'
 ], function(
     moment,
-    urlsConfig,
     mainConfig,
-    coloursConfig,
     partsLocale,
     ForecastItemTemplate,
     ForecastTodayTemplate,
@@ -57,29 +53,34 @@ define([
 
         _getForecastData: function() {
             return $.ajax({
-                url: urlsConfig.forecast,
+                url: mainConfig.urlsConfig.forecast,
                 success: this._onForecastGetSuccess
             });
         },
 
         _onForecastGetSuccess: function( data ) {
             console.log( data );
-            var date;
+
+            var dayObj,
+                date,
+                i;
 
             this.data = [];
             this.initialData = data;
 
             _.each( data.forecast, function( dayForecast, index ) {
+                // TODO: remove?
                 if ( index > 3 ) {
                     return false;
                 }
+
                 date = moment( dayForecast.date );
                 dayObj = {
                     date: this._formatDateString( date, index ),
                     parts: []
                 };
 
-                for ( i=0; i < 4; i++ ) {
+                for ( i = 0; i < 4; i++ ) {
                     this._parseDayParts( dayObj, dayForecast.parts[i] )
                 }
 
