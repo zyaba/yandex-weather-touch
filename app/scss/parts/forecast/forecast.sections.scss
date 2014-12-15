@@ -1,0 +1,66 @@
+&.forecast-short {
+  .day_forecast__row {
+    max-height: 40px;
+  }
+  .weather_item-details {
+    visibility: hidden;
+  }
+  .forecast__forecast_today {
+    max-height: 165px;
+  }
+  .forecast_today__weather_list-short {
+    display: block;
+  }
+  .forecast_today__last_update,
+  .forecast_visual {
+    display: none;
+  }
+}
+
+&.forecast-details {
+  .forecast_visual {
+    display: none;
+  }
+
+  .day_forecast_wrapper {
+    .day_forecast__row {
+      max-height: 160px;
+    }
+    .day_forecast__row_label {
+      color: #000;
+    }
+    .forecast__forecast_today {
+      max-height: 220px;
+    }
+    .weather_item-details,
+    .forecast_today__last_update,
+    .forecast_today__weather_list-details {
+      display: block;
+    }
+    .forecast_today__weather_list,
+    .forecast_today__weather_list-short {
+      display: none;
+    }
+  }
+}
+
+&.forecast-visual {
+  .forecast__forecast_today {
+    max-height: 165px;
+  }
+  .day_forecast__header,
+  .day_forecast__row {
+    display: none;
+  }
+  .forecast__forecast_today {
+    background-color: transparent !important;
+
+    .forecast_today__weather_list-short,
+    .weather_item-details {
+      display: none;
+    }
+  }
+  .day_forecast_wrapper {
+    margin-top: 0;
+  }
+}

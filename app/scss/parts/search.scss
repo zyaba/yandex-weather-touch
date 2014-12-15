@@ -8,6 +8,8 @@
     box-sizing: border-box;
     width: 75%;
     padding: 0 10px;
+    -webkit-appearance: none;
+    border-radius: 0;
 
     &:focus {
       border: 1px solid #FC0;

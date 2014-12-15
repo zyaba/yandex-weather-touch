@@ -1,8 +1,11 @@
 @import 'design';
 
-@import 'common';
-@import 'header';
-@import 'search-form';
-@import 'display-menu';
-@import 'forecast';
-@import 'footer';
+@import 'common/common';
+@import 'common/spinner';
+@import 'common/wind.icon';
+
+@import 'parts/tabs';
+@import 'parts/search';
+@import 'parts/header';
+@import 'parts/footer';
+@import 'parts/forecast';

@@ -1,0 +1,58 @@
+.forecast__forecast_today {
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: max-height $transitionSpeed;
+
+  .forecast_today_row {
+    &:first-child {
+      height: 56px;
+    }
+
+    &:after{
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+
+  .forecast_today__temp {
+    display: block;
+    font-size: 40px;
+  }
+
+  .forecast_today__last_update {
+    margin: 0 0 0 15px;
+    color: $gray;
+  }
+
+  .forecast_today__weather_list {
+    list-style-type: none;
+    margin: 0;
+    color: $gray;
+    padding-left: 15px;
+
+    .weather_list__weather_item {
+      margin-bottom: 3px;
+    }
+
+    .weather_list__weather_item_desc {
+      color: #000;
+      margin-bottom: 5px;
+      margin-top: 20px;
+      font-size: 17px;
+    }
+  }
+
+  .forecast_today__weather_list-details {
+    width: 65%;
+  }
+
+  .weather_item-details {
+    font-size: 15px;
+  }
+
+  .row_item__weather_icon {
+    width: 25%;
+  }
+}

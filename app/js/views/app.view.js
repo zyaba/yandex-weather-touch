@@ -1,11 +1,11 @@
 define([
     'backbone',
-    'hbs!templates/layout/layout',
+    'hbs!templates/container/container',
     'views/forecast.view',
     'views/tabs.view'
-], function( Backbone, LayoutTemplate, ForecastView, TabsView ) {
+], function( Backbone, ContainerTemplate, ForecastView, TabsView ) {
     return Backbone.View.extend({
-        template: LayoutTemplate,
+        template: ContainerTemplate,
 
         initialize: function() {
             return this;

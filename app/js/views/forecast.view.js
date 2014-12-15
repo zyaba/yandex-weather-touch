@@ -2,9 +2,9 @@ define([
     'moment',
     'configs/main.config',
     'locales/parts.locale',
-    'hbs!templates/forecast.item',
-    'hbs!templates/forecast.today',
-    'hbs!templates/forecast.visual'
+    'hbs!templates/forecast/forecast.item',
+    'hbs!templates/forecast/forecast.today',
+    'hbs!templates/forecast/forecast.visual'
 ], function(
     moment,
     mainConfig,
@@ -23,18 +23,20 @@ define([
         templateForecastVisual: ForecastVisualTemplate,
 
         initialize: function() {
-            _.bindAll( this, '_parseDayParts', '_onForecastGetSuccess', '_renderData' );
+            _.bindAll( this, '_parseDayParts', '_onForecastGetSuccess', '_onForecastFetchDone' );
             return this;
         },
 
         render: function() {
             $.when( this._getForecastData() )
-                .done( this._renderData );
+                .done( this._onForecastFetchDone );
 
             return this;
         },
 
-        _renderData: function() {
+        _onForecastFetchDone: function() {
+            this.$('.spinner' ).remove();
+
             this._renderOverall();
             this._renderToday();
             this._renderVisual();

@@ -1,0 +1,57 @@
+.day_forecast_wrapper {
+  margin-top: 20px;
+
+  .day_forecast__header {
+    margin: 20px 0 10px 20px;
+    font-size: 17px;
+  }
+
+  .day_forecast__row {
+    padding: 10px 20px;
+    box-sizing: border-box;
+    transition: max-height $transitionSpeed;
+    overflow: hidden;
+
+    &_label {
+      color: $gray;
+      height: 100%;
+      font-size: $fontSize;
+      box-sizing: border-box;
+      transition: color $transitionSpeed;
+      width: 30%;
+    }
+
+    &_item {
+      float: left;
+      text-align: left;
+      width: 70%;
+
+      .row_item__weather_icon {
+        margin-top: -10px;
+        width: 40px;
+      }
+
+      .row_item__temp {
+        margin-left: 30px;
+      }
+
+      .row_item__details {
+        position: relative;
+        top: 6px;
+        list-style-type: none;
+        padding: 0;
+        //          font-size: 15px;
+
+        .details__item {
+          margin-top: 5px;
+          color: $gray;
+        }
+
+        .details__item_head {
+          color: #000;
+          margin: 0 0 10px 0;
+        }
+      }
+    }
+  }
+}
