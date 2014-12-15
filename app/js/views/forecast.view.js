@@ -50,7 +50,7 @@ define([
 
         _renderToday: function() {
             var forecastToday = this.templateForecastToday( this.initialData.fact );
-            this.$el.find('.day_forecast_wrapper:first .day_forecast__header' ).after( forecastToday );
+            this.$('.day_forecast_wrapper:first .day_forecast__header' ).after( forecastToday );
         },
 
         _getForecastData: function() {

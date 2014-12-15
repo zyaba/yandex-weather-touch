@@ -19,7 +19,7 @@ define([
 
             this.$visualColumns = null;
             this.$forecast = $('.forecast');
-            this.$options = this.$el.find('li');
+            this.$options = this.$('.display_menu__item');
 
             return this;
         },

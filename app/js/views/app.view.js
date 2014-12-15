@@ -24,11 +24,11 @@ define([
         },
 
         _initTabs: function() {
-            this.$tabsView = new TabsView();
+            this.$tabsView = new TabsView().render();
         },
 
         _initSearchView: function() {
-            this.$searchView = new SearchView();
+            this.$searchView = new SearchView().render();
         },
 
         _renderForecastView: function() {
