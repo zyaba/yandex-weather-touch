@@ -32,14 +32,14 @@
     .forecast__forecast_today {
       max-height: 220px;
     }
+    .forecast_today__weather_list,
+    .forecast_today__weather_list-short {
+      display: none;
+    }
     .weather_item-details,
     .forecast_today__last_update,
     .forecast_today__weather_list-details {
       display: block;
-    }
-    .forecast_today__weather_list,
-    .forecast_today__weather_list-short {
-      display: none;
     }
   }
 }
