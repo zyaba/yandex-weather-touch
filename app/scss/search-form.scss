@@ -8,6 +8,11 @@
     box-sizing: border-box;
     width: 75%;
     padding: 0 10px;
+
+    &:focus {
+      border: 1px solid #FC0;
+      outline: none;
+    }
   }
 
   .search_form__search_btn {

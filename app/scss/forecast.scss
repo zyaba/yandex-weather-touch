@@ -11,7 +11,7 @@
       visibility: hidden;
     }
     .forecast__forecast_today {
-      max-height: 160px;
+      max-height: 165px;
     }
     .forecast_today__last_update {
       display: none;
@@ -58,6 +58,9 @@
   }
 
   &.forecast-visual {
+    .forecast__forecast_today {
+      max-height: 165px;
+    }
     .day_forecast__header,
     .day_forecast__row {
       display: none;
