@@ -9,7 +9,9 @@
         <span class="forecast_today__last_update left">2 часа назад</span>
     </div>
     <div class="forecast_today_row">
-        <img class="row_item__weather_icon left" src="http://ekb.shri14.ru/icons/{{weather_icon}}.svg"/>
+        <div class="row_item__weather_icon_wrapper left">
+            <img class="row_item__weather_icon" src="http://ekb.shri14.ru/icons/{{weather_icon}}.svg"/>
+        </div>
         <ul class="forecast_today__weather_list forecast_today__weather_list-details left">
             <li class="weather_list__weather_item weather_list__weather_item_desc">{{capitalize weather}}</li>
             <li class="weather_list__weather_item weather_item-details">Ветер: <span class="wind_icon wind_icon_{{wind_direction}}"></span>&nbsp;{{wind}}, {{wind_speed}}&nbsp;м/с</li>

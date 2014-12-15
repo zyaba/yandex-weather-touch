@@ -2,8 +2,9 @@ define([
     'backbone',
     'hbs!templates/container/container',
     'views/forecast.view',
+    'views/search.view',
     'views/tabs.view'
-], function( Backbone, ContainerTemplate, ForecastView, TabsView ) {
+], function( Backbone, ContainerTemplate, ForecastView, SearchView, TabsView ) {
     return Backbone.View.extend({
         template: ContainerTemplate,
 
@@ -16,6 +17,7 @@ define([
             $('body' ).html( this.el );
 
             this._initTabs();
+            this._initSearchView();
             this._renderForecastView();
 
             return this;
@@ -23,6 +25,10 @@ define([
 
         _initTabs: function() {
             this.$tabsView = new TabsView();
+        },
+
+        _initSearchView: function() {
+            this.$searchView = new SearchView();
         },
 
         _renderForecastView: function() {
