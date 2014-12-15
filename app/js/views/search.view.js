@@ -8,13 +8,26 @@ define([
 
         events: {
             'click .search_form__clear_input_icon': 'onClearInputClick',
-            'blur .search_form__search_input': 'onInputBlur',
+            'click .suggestion_list__item': 'onCityClick',
+            'submit': 'onFormSubmit',
             'focus .search_form__search_input': 'onInputFocus',
             'keydown .search_form__search_input': 'onInputKeydown'
         },
 
         initialize: function() {
-            _.bindAll( this, 'onInputKeydown', '_onFetchDone', '_onSuggestSuccess', 'onClearInputClick' );
+            var methodsToBind = [
+                '_onFetchDone',
+                '_onSuggestSuccess',
+                'onClearInputClick',
+                'onInputKeydown',
+                'onCityClick',
+                'onBodyClick',
+                'onFormSubmit'
+            ];
+
+            _.bindAll( this, methodsToBind );
+
+            this.suggestions = [];
 
             return this;
         },
@@ -24,19 +37,38 @@ define([
             this.$clearInputBtn = this.$('.search_form__clear_input_icon');
             this.$suggestionList = this.$('.search_form__suggestion_list');
 
+            $('body' ).on('click', this.onBodyClick );
+
             return this;
         },
 
-        onInputBlur: function() {
+        onCityClick: function( e ) {
+            e.stopPropagation();
+
+            var $el = $( e.currentTarget ),
+                cityName = $el.text(),
+                cityGeoId = $el.data('geo-id');
+
+            this.$searchInput.val( cityName );
             this.$suggestionList.hide();
         },
 
-        onInputFocus: function() {
-            this.$suggestionList.show();
+        onBodyClick: function( e ) {
+            if ( this.$suggestionList.is(':visible' ) ) {
+                this.$suggestionList.hide();
+            }
         },
 
-        onInputKeydown: _.debounce(function( e ) {
-            var name = $( e.currentTarget ).val().trim();
+        onInputFocus: function() {
+            if ( this.suggestions.length ) {
+                this.$suggestionList.show();
+            }
+        },
+
+        onFormSubmit: function( e ) {
+            e.preventDefault();
+
+            var name = this.$searchInput.val().trim();
 
             this.$clearInputBtn.toggleClass( 'invisible', !name );
 
@@ -46,7 +78,10 @@ define([
 
             $.when( this._fetchSuggestions( name ) )
                 .done( this._onFetchDone );
+        },
 
+        onInputKeydown: _.debounce(function() {
+            this.$el.submit();
         }, 100 ),
 
         onClearInputClick: function( e ) {
@@ -86,6 +121,7 @@ define([
             }.bind( this ) );
 
             this.$suggestionList.append( fragment );
+            this.$suggestionList.show();
         },
 
         _renderSingleRow: function( suggest ) {
