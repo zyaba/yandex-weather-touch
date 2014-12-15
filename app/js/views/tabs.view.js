@@ -15,17 +15,23 @@ define([
         },
 
         initialize: function() {
-            _.bindAll( this, 'onOptionChoose', '_onVisualSectionClick' );
+            _.bindAll( this, 'onOptionChoose', '_animateColumns' );
 
             this.$visualColumns = null;
             this.$forecast = $('.forecast');
             this.$options = this.$('.display_menu__item');
+
+            this.listenTo( Backbone, 'city:change', this.onCityChange );
 
             return this;
         },
 
         render: function() {
             return this;
+        },
+
+        onCityChange: function() {
+            this._onVisualSectionClick = _.once( this._animateColumns )
         },
 
         onOptionChoose: function( e ) {
@@ -46,10 +52,12 @@ define([
             }
         },
 
-        _onVisualSectionClick: _.once(function() {
+        _onVisualSectionClick: _.noop,
+
+        _animateColumns: function() {
             this.$visualColumns = $('.visual_item__column');
             this.$visualColumns.each( this._setProperHeight )
-        }),
+        },
 
         /**
          * Animate our columns by setting the right 'max-height' value

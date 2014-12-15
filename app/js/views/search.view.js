@@ -1,8 +1,9 @@
 define([
     'backbone',
+    'globals/main.global',
     'configs/urls.config',
     'locales/translit.locale'
-], function( Backbone, urlsConfig, translitLocale ) {
+], function( Backbone, Global, urlsConfig, translitLocale ) {
     return Backbone.View.extend({
         el: '.search_form',
 
@@ -47,10 +48,12 @@ define([
 
             var $el = $( e.currentTarget ),
                 cityName = $el.text(),
-                cityGeoId = $el.data('geo-id');
+                cityGeoId = $el.data('geoid' ).toString();
 
             this.$searchInput.val( cityName );
             this.$suggestionList.hide();
+
+            Global.router.navigate( cityGeoId, { trigger: true } );
         },
 
         onBodyClick: function( e ) {

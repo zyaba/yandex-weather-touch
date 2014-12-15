@@ -1,10 +1,12 @@
 define([
     'backbone',
+    'routers/main.router',
+    'globals/main.global',
     'hbs!templates/container/container',
     'views/forecast.view',
     'views/search.view',
     'views/tabs.view'
-], function( Backbone, ContainerTemplate, ForecastView, SearchView, TabsView ) {
+], function( Backbone, MainRouter, Global, ContainerTemplate, ForecastView, SearchView, TabsView ) {
     return Backbone.View.extend({
         template: ContainerTemplate,
 
@@ -19,6 +21,11 @@ define([
             this._initTabs();
             this._initSearchView();
             this._renderForecastView();
+
+            Global.router = new MainRouter();
+            Backbone.history.start();
+
+            Global.router.navigate( '54', { trigger: true });
 
             return this;
         },

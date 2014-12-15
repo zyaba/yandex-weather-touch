@@ -24,18 +24,44 @@ define([
 
         initialize: function() {
             _.bindAll( this, '_parseDayParts', '_onForecastGetSuccess', '_onForecastFetchDone' );
+
+            this.currentCityGeoId = 54; //@TODO: remove
+
+            this.listenTo( Backbone, 'city:change', this.onCityChange );
+
             return this;
         },
 
         render: function() {
-            $.when( this._getForecastData() )
-                .done( this._onForecastFetchDone );
-
             return this;
         },
 
+        onCityChange: function( geoid ) {
+            if ( geoid === this.currentCityGeoId ) {
+                return false;
+            }
+
+            console.log('change', geoid);
+
+            this.currentCityGeoId = geoid;
+            this._removePrevInfo();
+
+            $.when( this._getForecastData() )
+                .done( this._onForecastFetchDone );
+        },
+
+        _removePrevInfo: function() {
+            this.$('.day_forecast_wrapper' ).remove();
+            this.$('.forecast_visual' ).remove();
+
+            this.$('.spinner' ).show();
+        },
+
         _onForecastFetchDone: function() {
-            this.$('.spinner' ).remove();
+            this.$('.spinner' ).hide();
+
+            this._removePrevInfo(); // @TODO: remove
+            this.$('.spinner' ).hide();
 
             this._renderOverall();
             this._renderToday();
@@ -55,7 +81,7 @@ define([
 
         _getForecastData: function() {
             return $.ajax({
-                url: mainConfig.urlsConfig.forecast,
+                url: mainConfig.urlsConfig.forecast.replace('{geoid}', this.currentCityGeoId),
                 success: this._onForecastGetSuccess
             });
         },
