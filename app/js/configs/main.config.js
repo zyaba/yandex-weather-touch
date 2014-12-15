@@ -8,7 +8,7 @@ define([
         coloursConfig: coloursConfig,
         formatsConfig: formatsConfig,
 
-        VISUAL_GRAPH_MIN_HEIGHT: 100,
-        VISUAL_GRAPH_MAX_HEIGHT: 400
+        VISUAL_GRAPH_MIN_HEIGHT: 50,
+        VISUAL_GRAPH_MAX_HEIGHT: 200
     };
 });

@@ -4,6 +4,7 @@ var gulp = require('gulp' ),
 gulp.task('sass', function () {
     gulp.src('./app/scss/main.scss')
         .pipe(plugins.sass())
+        .pipe(plugins.autoprefixer())
         .pipe(gulp.dest('./dist/css'));
 });
 

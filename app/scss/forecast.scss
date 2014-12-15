@@ -1,15 +1,17 @@
 .forecast {
   @import "wind.icon";
 
+  font-size: 15px;
+
   &.forecast-short {
     .day_forecast__row {
-      max-height: 80px;
+      max-height: 40px;
     }
     .weather_item-details {
       visibility: hidden;
     }
     .forecast__forecast_today {
-      max-height: 230px;
+      max-height: 160px;
     }
     .forecast_today__last_update {
       display: none;
@@ -29,7 +31,7 @@
 
     .day_forecast_wrapper {
       .day_forecast__row {
-        max-height: 215px;
+        max-height: 160px;
       }
       .day_forecast__row_label {
         color: #000;
@@ -38,7 +40,7 @@
         display: block;
       }
       .forecast__forecast_today {
-        max-height: 270px;
+        max-height: 220px;
       }
       .forecast_today__last_update {
         display: block;
@@ -70,6 +72,9 @@
         display: none;
       }
     }
+    .day_forecast_wrapper {
+      margin-top: 0;
+    }
   }
 
 
@@ -77,29 +82,33 @@
     margin-top: 20px;
 
     .day_forecast__header {
-      margin: 40px 0 10px 20px;
+      margin: 20px 0 10px 20px;
+      font-size: 17px;
     }
 
     .day_forecast__row {
-      padding: 25px 20px;
+      padding: 10px 20px;
       box-sizing: border-box;
       transition: max-height $transitionSpeed;
       overflow: hidden;
 
       &_label {
         color: $gray;
-        width: 120px;
         height: 100%;
+        font-size: $fontSize;
         box-sizing: border-box;
         transition: color $transitionSpeed;
+        width: 30%;
       }
 
       &_item {
         float: left;
         text-align: left;
+        width: 70%;
 
         .row_item__weather_icon {
           margin-top: -10px;
+          width: 40px;
         }
 
         .row_item__temp {
@@ -111,7 +120,7 @@
           top: 6px;
           list-style-type: none;
           padding: 0;
-          font-size: 20px;
+//          font-size: 15px;
 
           .details__item {
             margin-top: 5px;
@@ -133,29 +142,33 @@
     overflow: hidden;
     transition: max-height $transitionSpeed;
 
-    .forecast_today_row:after {
-      content: "";
-      display: table;
-      clear: both;
+    .forecast_today_row {
+      &:first-child {
+        height: 52px;
+      }
+
+      &:after{
+        content: "";
+        display: table;
+        clear: both;
+      }
     }
 
     .forecast_today__temp {
       display: block;
-      font-size: 80px;
+      font-size: 40px;
     }
 
     .forecast_today__last_update {
-      margin: 10px 0 0 40px;
+      margin: 0 0 0 15px;
       color: $gray;
     }
 
     .forecast_today__weather_list {
       list-style-type: none;
-      margin-top: 10px;
-      margin-bottom: 0;
-      font-size: 20px;
+      margin: 0;
       color: $gray;
-      max-width: 60%;
+      padding-left: 15px;
       
       .weather_list__weather_item {
         margin-bottom: 3px;
@@ -165,11 +178,20 @@
         color: #000;
         margin-bottom: 5px;
         margin-top: 20px;
+        font-size: 17px;
       }
     }
 
+    .forecast_today__weather_list-details {
+      width: 65%;
+    }
+
+    .weather_item-details {
+      font-size: 15px;
+    }
+
     .row_item__weather_icon {
-      width: 100px;
+      width: 25%;
     }
   }
 
@@ -184,7 +206,7 @@
       display: inline-block;
       width: 10%;
       float: left;
-      height: 475px;
+      height: 235px;
       text-align: center;
       position: relative;
 
@@ -207,12 +229,12 @@
 
         .visual_item__temp {
           display: block;
-          margin-top: -45px;
+          margin-top: -30px;
         }
 
         .visual_item__day {
           position: absolute;
-          bottom: 10px;
+          bottom: 7px;
           left: 0;
           right: 0;
 
@@ -223,7 +245,7 @@
 
         .visual_item__weather_icon {
           position: absolute;
-          bottom: 40px;
+          bottom: 30px;
           width: 50%;
           margin-left: 25%;
           left: 0;
