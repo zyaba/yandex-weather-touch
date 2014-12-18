@@ -1,33 +1,39 @@
 .spinner {
-  top: 50%;
-  position: absolute;
-  left: 50%;
-  margin-top: -20px;
-  margin-left: -20px;
-  width: 40px;
-  height: 40px;
-  background-color: #F4746A;
+    position: absolute;
+    top: 50%;
+    left: 50%;
 
-  border-radius: 100%;
-  -webkit-animation: scaleout 1.0s infinite ease-in-out;
-  animation: scaleout 1.0s infinite ease-in-out;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+
+    -webkit-animation: scaleout 1.0s infinite ease-in-out;
+            animation: scaleout 1.0s infinite ease-in-out;
+
+    border-radius: 100%;
+    background-color: #f4746a;
 }
 
 @-webkit-keyframes scaleout {
-  0% { -webkit-transform: scale(0.0) }
-  100% {
-    -webkit-transform: scale(1.0);
-    opacity: 0;
-  }
+    0% {
+        -webkit-transform: scale(.0);
+    }
+    100% {
+        -webkit-transform: scale(1.0);
+
+        opacity: 0;
+    }
 }
 
 @keyframes scaleout {
-  0% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 100% {
-      transform: scale(1.0);
-      -webkit-transform: scale(1.0);
-      opacity: 0;
+    0% {
+        -webkit-transform: scale(.0);
+                transform: scale(.0);
+    } 100% {
+        -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+
+        opacity: 0;
     }
 }

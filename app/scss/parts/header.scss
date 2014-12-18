@@ -1,50 +1,63 @@
 header {
-  padding: 15px 20px;
-  height: 60px;
-  border-bottom: 1px solid #d9d9d9;
-  box-sizing: border-box;
-
-  .header__logo {
-    float: left;
-    width: 84px;
-    height: 36px;
-  }
-
-  .header__section {
-    border: 2px solid #FC0;
-    height: 32px;
     box-sizing: border-box;
-    font-size: 17px;
-    line-height: 28px;
-    text-align: center;
-    width: 86px;
-    position: relative;
-    float: left;
-    margin-left: 20px;
+    height: 60px;
+    padding: 15px 20px;
 
-    &:after {
-      position: absolute;
-      top: -2px;
-      content: '';
-      transform: rotate(45deg) skew(18.435deg, 18.435deg) scale(0.53);
-      right: -18px;
-      width: 32px;
-      height: 32px;
-      background-color: #FC0;
+    border-bottom: 1px solid #d9d9d9;
+
+    .header__logo {
+        float: left;
+
+        width: 84px;
+        height: 36px;
     }
 
-    .header__section__label {
-      &:after {
-        position: absolute;
-        top: 0;
-        content: '';
-        transform: rotate(45deg) skew(18.435deg, 18.435deg) scale(0.53);
-        right: -14px;
-        width: 28px;
-        height: 28px;
-        background-color: #FFF;
-        z-index: 1;
-      }
+    .header__section {
+        font-size: 17px;
+        line-height: 28px;
+
+        position: relative;
+
+        float: left;
+
+        box-sizing: border-box;
+        width: 86px;
+        height: 32px;
+        margin-left: 20px;
+
+        text-align: center;
+
+        border: 2px solid #fc0;
+
+        &:after {
+            position: absolute;
+            top: -2px;
+            right: -18px;
+
+            width: 32px;
+            height: 32px;
+
+            content: '';
+            transform: rotate(45deg) skew(18.435deg, 18.435deg) scale(.53);
+
+            background-color: #fc0;
+        }
+
+        .header__section__label {
+            &:after {
+                position: absolute;
+                z-index: 1;
+                top: 0;
+                right: -14px;
+
+                width: 28px;
+                height: 28px;
+
+                content: '';
+                transform: rotate(45deg) skew(18.435deg, 18.435deg) scale(.53);
+
+                background-color: #fff;
+            }
+        }
     }
-  }
 }

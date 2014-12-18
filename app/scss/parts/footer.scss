@@ -1,13 +1,15 @@
 footer {
-  margin-top: 40px;
-  font-size: 15px;
+    font-size: 15px;
 
-  .footer__links_list {
-    list-style-type: none;
-    padding-left: 20px;
+    margin-top: 40px;
 
-    .footer__links_list__item {
-      margin-bottom: 10px;
+    .footer__links_list {
+        padding-left: 20px;
+
+        list-style-type: none;
+
+        .footer__links_list__item {
+            margin-bottom: 10px;
+        }
     }
-  }
 }

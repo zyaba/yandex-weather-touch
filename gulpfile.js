@@ -8,17 +8,21 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./dist/css'));
 });
 
+gulp.task('sass-comb', function() {
+    gulp.src('./app/scss/**/*.scss')
+        .pipe(plugins.csscomb())
+        .pipe(gulp.dest('./app/scss'));
+});
+
 gulp.task('build', function() {
     plugins.requirejs( require('./build.config') )
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.watch('app/scss/**/*.scss', ['sass'] ).on('change', function(event) {
-    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+gulp.task('watch-sass', function() {
+    gulp.watch( 'app/scss/**/*.scss', [ 'sass' ] ).on( 'change', function ( event ) {
+        console.log( 'File ' + event.path + ' was ' + event.type + ', running tasks...' );
+    } );
 });
 
-//gulp.watch('app/js/**/*.js', ['build'] ).on('change', function(event) {
-//    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-//});
-
-gulp.task('default', ['sass', 'build']);
+gulp.task('default', ['sass', 'build'] );

@@ -1,25 +1,27 @@
 body {
-  font-size: $fontSize;
-  overflow-y: scroll;
+    font-size: $fontSize;
+
+    overflow-y: scroll;
 }
 
 a {
-  color: $blue;
-  text-decoration: none;
+    text-decoration: none;
+
+    color: $blue;
 }
 
 .left {
-  float: left;
+    float: left;
 }
 
 .right {
-  float: right;
+    float: right;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
 .invisible {
-  visibility: hidden;
+    visibility: hidden;
 }

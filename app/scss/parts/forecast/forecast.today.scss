@@ -1,65 +1,73 @@
 .forecast__forecast_today {
-  padding: 20px;
-  box-sizing: border-box;
-  overflow: hidden;
-  transition: max-height $transitionSpeed;
+    overflow: hidden;
 
-  .forecast_today_row {
-    &:first-child {
-      height: 56px;
+    box-sizing: border-box;
+    padding: 20px;
+
+    transition: max-height $transitionSpeed;
+
+    .forecast_today_row {
+        &:first-child {
+            height: 56px;
+        }
+
+        &:after {
+            display: table;
+            clear: both;
+
+            content: '';
+        }
     }
 
-    &:after{
-      content: "";
-      display: table;
-      clear: both;
-    }
-  }
+    .forecast_today__temp {
+        font-size: 40px;
 
-  .forecast_today__temp {
-    display: block;
-    font-size: 40px;
-  }
-
-  .forecast_today__last_update {
-    margin: 0 0 0 15px;
-    color: $gray;
-  }
-
-  .forecast_today__weather_list {
-    list-style-type: none;
-    margin: 0;
-    color: $gray;
-    padding-left: 15px;
-//    padding: 0;
-
-    .weather_list__weather_item {
-      margin-bottom: 3px;
+        display: block;
     }
 
-    .weather_list__weather_item_desc {
-      color: #000;
-      margin-bottom: 5px;
-      margin-top: 20px;
-      font-size: 17px;
+    .forecast_today__last_update {
+        margin: 0 0 0 15px;
+
+        color: $gray;
     }
-  }
 
-  .forecast_today__weather_list-details {
-    width: 65%;
-    padding: 0;
-  }
+    .forecast_today__weather_list {
+        margin: 0;
+        padding-left: 15px;
 
-  .weather_item-details {
-    font-size: 15px;
-  }
+        list-style-type: none;
 
-  .row_item__weather_icon_wrapper {
-    width: 30%;
-  }
+        color: $gray;
 
-  .row_item__weather_icon {
-    width: 80%;
-    max-height: 100px;
-  }
+        .weather_list__weather_item {
+            margin-bottom: 3px;
+        }
+
+        .weather_list__weather_item_desc {
+            font-size: 17px;
+
+            margin-top: 20px;
+            margin-bottom: 5px;
+
+            color: #000;
+        }
+    }
+
+    .forecast_today__weather_list-details {
+        width: 65%;
+        padding: 0;
+    }
+
+    .weather_item-details {
+        font-size: 15px;
+    }
+
+    .row_item__weather_icon_wrapper {
+        width: 30%;
+    }
+
+    .row_item__weather_icon {
+        width: 80%;
+        max-height: 100px;
+    }
 }
