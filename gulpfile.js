@@ -14,6 +14,7 @@ gulp.task('sass-comb', function() {
         .pipe(gulp.dest('./app/scss'));
 });
 
+// Concat and min js modules
 gulp.task('build', function() {
     plugins.requirejs( require('./build.config') )
         .pipe(gulp.dest('./dist/'));
@@ -24,5 +25,7 @@ gulp.task('watch-sass', function() {
         console.log( 'File ' + event.path + ' was ' + event.type + ', running tasks...' );
     } );
 });
+
+// @TODO: add watching for js and hbs
 
 gulp.task('default', ['sass', 'build'] );
