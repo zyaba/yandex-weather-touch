@@ -1,5 +1,6 @@
 define([
     'moment',
+    'globals/main.global',
     'configs/main.config',
     'locales/parts.locale',
     'hbs!templates/forecast/forecast.item',
@@ -7,6 +8,7 @@ define([
     'hbs!templates/forecast/forecast.visual'
 ], function(
     moment,
+    Global,
     mainConfig,
     partsLocale,
     ForecastItemTemplate,
@@ -23,9 +25,7 @@ define([
         templateForecastVisual: ForecastVisualTemplate,
 
         initialize: function() {
-            _.bindAll( this, '_parseDayParts', '_onForecastGetSuccess', '_onForecastFetchDone' );
-
-            this.currentCityGeoId = 54; //@TODO: remove
+            _.bindAll( this, '_parseDayParts', '_onForecastGetSuccess', '_onForecastGetError', '_onForecastFetchDone' );
 
             this.listenTo( Backbone, 'city:change', this.onCityChange );
 
@@ -33,18 +33,16 @@ define([
         },
 
         render: function() {
+            this.$spinner = this.$('.spinner');
+            this.$errMsg = this.$('.error');
+
             return this;
         },
 
         onCityChange: function( geoid ) {
-            if ( geoid === this.currentCityGeoId ) {
-                return false;
-            }
-
-            console.log('change', geoid);
-
             this.currentCityGeoId = geoid;
             this._removePrevInfo();
+            this.$errMsg.hide();
 
             $.when( this._getForecastData() )
                 .done( this._onForecastFetchDone );
@@ -54,14 +52,14 @@ define([
             this.$('.day_forecast_wrapper' ).remove();
             this.$('.forecast_visual' ).remove();
 
-            this.$('.spinner' ).show();
+            this.$spinner.show();
         },
 
         _onForecastFetchDone: function() {
-            this.$('.spinner' ).hide();
+            this.$spinner.hide();
 
-            this._removePrevInfo(); // @TODO: remove
-            this.$('.spinner' ).hide();
+            //this._removePrevInfo(); // @TODO: remove
+            //this.$('.spinner' ).hide();
 
             this._renderOverall();
             this._renderToday();
@@ -82,12 +80,23 @@ define([
         _getForecastData: function() {
             return $.ajax({
                 url: mainConfig.urlsConfig.forecast.replace('{geoid}', this.currentCityGeoId),
-                success: this._onForecastGetSuccess
+                success: this._onForecastGetSuccess,
+                error: this._onForecastGetError
             });
+        },
+
+        _onForecastGetError: function() {
+            Backbone.trigger('getForecast:error');
+            this.$spinner.hide();
+            this.$errMsg.show();
         },
 
         _onForecastGetSuccess: function( data ) {
             console.log( data );
+
+            Global.currentCityName = data.info.name;
+            Backbone.trigger('getForecast:success');
+            this.$errMsg.hide();
 
             var dayObj,
                 date,

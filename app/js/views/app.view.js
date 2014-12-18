@@ -2,11 +2,12 @@ define([
     'backbone',
     'routers/main.router',
     'globals/main.global',
+    'configs/main.config',
     'hbs!templates/container/container',
     'views/forecast.view',
     'views/search.view',
     'views/tabs.view'
-], function( Backbone, MainRouter, Global, ContainerTemplate, ForecastView, SearchView, TabsView ) {
+], function( Backbone, MainRouter, Global, mainConfig, ContainerTemplate, ForecastView, SearchView, TabsView ) {
     return Backbone.View.extend({
         template: ContainerTemplate,
 
@@ -25,7 +26,9 @@ define([
             Global.router = new MainRouter();
             Backbone.history.start();
 
-            Global.router.navigate( '54', { trigger: true });
+            if ( !Global.currentCityId ) {
+                this._getGeoLocation();
+            }
 
             return this;
         },
@@ -40,6 +43,40 @@ define([
 
         _renderForecastView: function() {
             this.$forecastView = new ForecastView().render();
+        },
+
+        _getGeoLocation: function() {
+            if ( !navigator.geolocation ){
+                this._onGetCurrentPosError();
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition( this._onGetCurrentPosSuccess.bind( this ), this._onGetCurrentPosError );
+        },
+
+        _onGetCurrentPosSuccess: function( position ) {
+            console.log('succ', position);
+
+            var latitude  = position.coords.latitude,
+                longitude = position.coords.longitude;
+
+            $.ajax({
+                url: mainConfig.urlsConfig.geocode.replace('{long}', longitude ).replace('{lat}', latitude),
+                dataType: 'json',
+                success: this._onGeoIdGetSuccess,
+                error: this._onGetCurrentPosError
+            });
+        },
+
+        _onGetCurrentPosError: function() {
+            Global.router.navigate( mainConfig.DEFAULT_CITY_GEOID.toString(), { trigger: true } );
+        },
+
+        _onGeoIdGetSuccess: function( data ) {
+            Global.currentCityName = data.name;
+            Global.currentCityId = data.geoId;
+
+            Global.router.navigate( data.geoid.toString(), { trigger: true } );
         }
     });
 });

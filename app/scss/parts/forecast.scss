@@ -2,6 +2,12 @@
   font-size: 15px;
   min-height: 200px;
 
+  .error {
+    margin-left: 20px;
+    color: #F00;
+    margin-top: 50px;
+  }
+
   @import "forecast/forecast.rows";
   @import "forecast/forecast.sections";
   @import "forecast/forecast.today";

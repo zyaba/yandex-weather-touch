@@ -30,6 +30,9 @@ define([
 
             this.suggestions = [];
 
+            this.listenTo( Backbone, 'getForecast:success', this.onForecastGetSuccess );
+            this.listenTo( Backbone, 'getForecast:error', this.onForecastGetError );
+
             return this;
         },
 
@@ -43,6 +46,14 @@ define([
             return this;
         },
 
+        onForecastGetError: function() {
+            this.$searchInput.val( '' );
+        },
+
+        onForecastGetSuccess: function() {
+            this.$searchInput.val( Global.currentCityName );
+        },
+
         onCityClick: function( e ) {
             e.stopPropagation();
 
@@ -50,8 +61,11 @@ define([
                 cityName = $el.text(),
                 cityGeoId = $el.data('geoid' ).toString();
 
-            this.$searchInput.val( cityName );
+            //this.$searchInput.val( cityName );
             this.$suggestionList.hide();
+
+            Global.currentCityName = cityName;
+            Global.currentCityId = cityGeoId;
 
             Global.router.navigate( cityGeoId, { trigger: true } );
         },
