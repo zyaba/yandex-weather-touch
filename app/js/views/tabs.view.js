@@ -22,6 +22,7 @@ define([
             this.$options = this.$('.display_menu__item');
 
             this.listenTo( Backbone, 'city:change', this.onCityChange );
+            this.listenTo( Backbone, 'visualForecast:render', this.onVisualForecastRender );
 
             return this;
         },
@@ -32,6 +33,15 @@ define([
 
         onCityChange: function() {
             this._onVisualSectionClick = _.once( this._animateColumns )
+        },
+
+        onVisualForecastRender: function() {
+            // A bit of hacking.
+            // When columns are rendered we want to animate them if
+            // they are visible
+            if ( $('.forecast_visual' ).is(':visible') ) {
+                this._onVisualSectionClick();
+            }
         },
 
         onOptionChoose: function( e ) {

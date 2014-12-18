@@ -196,6 +196,8 @@ define([
         _renderVisual: function() {
             var data = this._parseVisualData();
             this.$el.append( this.templateForecastVisual( data ) );
+
+            Backbone.trigger('visualForecast:render');
         },
 
         _formatDateString: function( date, index ) {
