@@ -5,7 +5,7 @@ define([
         el: '.display_menu',
 
         events: {
-            'click li': 'onOptionChoose'
+            'tap li': 'onOptionChoose'
         },
 
         optionsMap: {

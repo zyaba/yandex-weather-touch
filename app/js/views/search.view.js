@@ -8,8 +8,8 @@ define([
         el: '.search_form',
 
         events: {
-            'click .search_form__clear_input_icon': 'onClearInputClick',
-            'click .suggestion_list__item': 'onCityClick',
+            'tap .search_form__clear_input_icon': 'onClearInputClick',
+            'tap .suggestion_list__item': 'onCityClick',
             'submit': 'onFormSubmit',
             'focus .search_form__search_input': 'onInputFocus',
             'keydown .search_form__search_input': 'onInputKeydown'
@@ -41,7 +41,7 @@ define([
             this.$clearInputBtn = this.$('.search_form__clear_input_icon');
             this.$suggestionList = this.$('.search_form__suggestion_list');
 
-            $('body' ).on('click', this.onBodyClick );
+            $('body' ).on('tap', this.onBodyClick );
 
             return this;
         },

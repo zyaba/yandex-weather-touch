@@ -5,6 +5,7 @@ require.config({
 
     paths: {
         jquery: assetsPath + 'jquery/dist/jquery.min',
+        jqueryMobileEvents: assetsPath + 'jquery-mobile-events/src/jquery.mobile-events.min',
 
         underscore: assetsPath + 'lodash/dist/lodash.underscore.min',
         backbone: assetsPath + 'backbone/backbone',
@@ -19,7 +20,8 @@ require.config({
         backbone: {
             deps: [ 'underscore', 'jquery' ],
             exports: 'Backbone'
-        }
+        },
+        jqueryMobileEvents: ['jquery']
     },
 
     hbs: {
@@ -28,7 +30,7 @@ require.config({
 });
 
 require([ 'backbone', 'common/lodash.mixins', 'common/handlebars.helpers' ], function() {} );
-require([ 'moment', 'locales/moment.locale'], function( moment, momentLocales) {
+require([ 'moment', 'locales/moment.locale', 'jqueryMobileEvents' ], function( moment, momentLocales) {
     moment.locale( 'ru', momentLocales );
 });
 require([ 'jquery', 'views/app.view' ], function( $, AppView ) {

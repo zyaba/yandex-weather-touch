@@ -2,13 +2,12 @@ var assetsPath = '../../bower_components/';
 
 module.exports = {
     baseUrl: 'app/js',
-
-        name: 'main',
-
+    name: 'main',
     out: 'app.min.js',
 
     paths: {
-    jquery: assetsPath + 'jquery/dist/jquery.min',
+        jquery: assetsPath + 'jquery/dist/jquery.min',
+        jqueryMobileEvents: assetsPath + 'jquery-mobile-events/src/jquery.mobile-events.min',
 
         underscore: assetsPath + 'lodash/dist/lodash.underscore.min',
         backbone: assetsPath + 'backbone/backbone',
