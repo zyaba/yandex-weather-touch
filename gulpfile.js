@@ -8,14 +8,17 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./dist/css'));
 });
 
-//var watcher = gulp.watch('app/**/*.js', ['uglify','reload']);
-//watcher.on('change', function(event) {
-//    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-//});
+gulp.task('build', function() {
+    plugins.requirejs( require('./build.config') )
+        .pipe(gulp.dest('./dist/'));
+});
 
-var watcher = gulp.watch('app/scss/**/*.scss', ['sass']);
-watcher.on('change', function(event) {
+gulp.watch('app/scss/**/*.scss', ['sass'] ).on('change', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 });
 
-gulp.task('default', ['sass']);
+//gulp.watch('app/js/**/*.js', ['build'] ).on('change', function(event) {
+//    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+//});
+
+gulp.task('default', ['sass', 'build']);

@@ -69,7 +69,10 @@ define([
         },
 
         _onGetCurrentPosError: function() {
-            Global.router.navigate( mainConfig.DEFAULT_CITY_GEOID.toString(), { trigger: true } );
+            Global.currentCityName = mainConfig.DEFAULT_CITY_NAME;
+            Global.currentCityId = mainConfig.DEFAULT_CITY_GEOID;
+
+            Global.router.navigate( Global.currentCityId.toString(), { trigger: true } );
         },
 
         _onGeoIdGetSuccess: function( data ) {
