@@ -12,7 +12,7 @@ define([
         },
 
         onCityChange: function( geoid ) {
-            console.log('city id', geoid);
+            //console.log('city id', geoid);
             Backbone.trigger('city:change', geoid);
         }
     });

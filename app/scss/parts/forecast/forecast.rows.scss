@@ -4,6 +4,10 @@
   .day_forecast__header {
     margin: 20px 0 10px 20px;
     font-size: 17px;
+
+    &.header-weekend {
+      color: red;
+    }
   }
 
   .day_forecast__row {

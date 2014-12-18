@@ -52,6 +52,7 @@ define([
 
         onForecastGetSuccess: function() {
             this.$searchInput.val( Global.currentCityName );
+            this.$clearInputBtn.removeClass('invisible');
         },
 
         onCityClick: function( e ) {
@@ -102,7 +103,7 @@ define([
         }, 100 ),
 
         onClearInputClick: function( e ) {
-            this.$searchInput.val('');
+            this.$searchInput.val('' ).focus();
             this.$suggestionList.empty();
             this.$clearInputBtn.addClass('invisible');
         },
@@ -115,7 +116,7 @@ define([
         },
 
         _onSuggestSuccess: function( data ) {
-            console.log( data );
+            //console.log( data );
             this.suggestions = data;
         },
 

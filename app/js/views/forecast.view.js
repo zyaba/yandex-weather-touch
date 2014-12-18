@@ -92,28 +92,29 @@ define([
         },
 
         _onForecastGetSuccess: function( data ) {
-            console.log( data );
-
-            Global.currentCityName = data.info.name;
-            Backbone.trigger('getForecast:success');
-            this.$errMsg.hide();
+            //console.log( data );
 
             var dayObj,
                 date,
                 i;
+
+            Global.currentCityName = data.info.name;
+            Backbone.trigger('getForecast:success');
+            this.$errMsg.hide();
 
             this.data = [];
             this.initialData = data;
 
             _.each( data.forecast, function( dayForecast, index ) {
                 // TODO: remove?
-                if ( index > 3 ) {
-                    return false;
-                }
+                //if ( index > 3 ) {
+                //    return false;
+                //}
 
                 date = moment( dayForecast.date );
                 dayObj = {
                     date: this._formatDateString( date, index ),
+                    isWeekend: date.get('day') === 6 || date.get('day') === 0,
                     parts: []
                 };
 
@@ -200,11 +201,11 @@ define([
         _formatDateString: function( date, index ) {
             switch( index ) {
                 case 0:
-                    return date.format('Сегодня, D MMMM');
+                    return date.format( mainConfig.formatsConfig.DATE_TODAY );
                 case 1:
-                    return date.format('Завтра, D MMMM');
+                    return date.format( mainConfig.formatsConfig.DATE_TOMORROW );
                 default:
-                    return date.format('D MMMM, dddd');
+                    return date.format( mainConfig.formatsConfig.DATE );
             }
         }
     });
