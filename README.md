@@ -1,8 +1,7 @@
 Yandex Weather Touch
 ====================
 ## Woking example:
-[DEMO](http://localhost:63342/yandex-weather-touch/)
-There are still lots of thing to do
+[DEMO](http://exp.andb.me/forecast-touch)
 
 ## Ecosystem
 Install [Bower](http://bower.io/) and [Gulp](http://gulpjs.com/)
