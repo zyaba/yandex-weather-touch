@@ -49,16 +49,15 @@
     }
 
     .search_form__suggestion_list {
-        //    display: block;
         position: absolute;
         z-index: 10;
         right: 0;
         left: 0;
+        top: 100px;
 
         display: none;
-        overflow-y: scroll;
 
-        max-height: 40%;
+        max-height: 100%;
         margin-top: 10px;
         padding-left: 0;
 
