@@ -51,12 +51,10 @@ define([
                 return;
             }
 
-            navigator.geolocation.getCurrentPosition( this._onGetCurrentPosSuccess.bind( this ), this._onGetCurrentPosError );
+            navigator.geolocation.getCurrentPosition( this._onGetCurrentPosSuccess.bind( this ), this._onGetCurrentPosError, { timeout: 5000 } );
         },
 
         _onGetCurrentPosSuccess: function( position ) {
-            console.log('succ', position);
-
             var latitude  = position.coords.latitude,
                 longitude = position.coords.longitude;
 
